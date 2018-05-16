@@ -1,0 +1,37 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.27428.2037
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RichClient", "RichClient\RichClient.csproj", "{E2FD641A-BA0F-44EB-9AE6-CB120626A240}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RichWebsite", "RichWebsite\RichWebsite.csproj", "{5B449F1A-BF0C-4F65-AE91-F76D8A9264A0}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RichData", "RichData\RichData.csproj", "{69715FB5-40A8-4031-B48F-B1F928C92D40}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{E2FD641A-BA0F-44EB-9AE6-CB120626A240}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E2FD641A-BA0F-44EB-9AE6-CB120626A240}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E2FD641A-BA0F-44EB-9AE6-CB120626A240}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E2FD641A-BA0F-44EB-9AE6-CB120626A240}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5B449F1A-BF0C-4F65-AE91-F76D8A9264A0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5B449F1A-BF0C-4F65-AE91-F76D8A9264A0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5B449F1A-BF0C-4F65-AE91-F76D8A9264A0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5B449F1A-BF0C-4F65-AE91-F76D8A9264A0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{69715FB5-40A8-4031-B48F-B1F928C92D40}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{69715FB5-40A8-4031-B48F-B1F928C92D40}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{69715FB5-40A8-4031-B48F-B1F928C92D40}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{69715FB5-40A8-4031-B48F-B1F928C92D40}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {74FE38A1-0BDE-43D0-AB46-227F5CE8E418}
+	EndGlobalSection
+EndGlobal
