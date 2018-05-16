@@ -15,16 +15,16 @@ namespace RichWebsite.Controllers
             return View();
         }
 
-        public IActionResult About()
+        public IActionResult LoL()
         {
-            ViewData["Message"] = "Your application description page.";
+            ViewData["Message"] = "League";
 
             return View();
         }
 
-        public IActionResult Contact()
+        public IActionResult GW2()
         {
-            ViewData["Message"] = "Your contact page.";
+            ViewData["Message"] = "Guild";
 
             return View();
         }
@@ -33,5 +33,7 @@ namespace RichWebsite.Controllers
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
+
+        
     }
 }
