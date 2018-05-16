@@ -13,14 +13,14 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace RichClient
+namespace RichClient.Views
 {
     /// <summary>
-    /// Interaction logic for MainWindow.xaml
+    /// Interaction logic for GW2View.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class GW2View : UserControl
     {
-        public MainWindow()
+        public GW2View()
         {
             InitializeComponent();
         }
