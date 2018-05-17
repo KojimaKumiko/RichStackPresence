@@ -100,13 +100,29 @@
     <Compile Include="IMainViewTabItem.cs" />
     <Compile Include="ShellViewModel.cs" />
     <Compile Include="ViewModels\GW2AccountViewModel.cs" />
+    <Compile Include="ViewModels\GW2CharacterViewModel.cs" />
+    <Compile Include="ViewModels\GW2PvPViewModel.cs" />
+    <Compile Include="ViewModels\GW2TPViewModel.cs" />
     <Compile Include="ViewModels\GW2ViewModel.cs" />
+    <Compile Include="ViewModels\GW2WvWViewModel.cs" />
     <Compile Include="ViewModels\LeagueViewModel.cs" />
     <Compile Include="Views\GW2AccountView.xaml.cs">
       <DependentUpon>GW2AccountView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\GW2CharacterView.xaml.cs">
+      <DependentUpon>GW2CharacterView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\GW2PvPView.xaml.cs">
+      <DependentUpon>GW2PvPView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\GW2TPView.xaml.cs">
+      <DependentUpon>GW2TPView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\GW2View.xaml.cs">
       <DependentUpon>GW2View.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\GW2WvWView.xaml.cs">
+      <DependentUpon>GW2WvWView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\LeagueView.xaml.cs">
       <DependentUpon>LeagueView.xaml</DependentUpon>
@@ -127,7 +143,23 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Views\GW2CharacterView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\GW2PvPView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\GW2TPView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\GW2View.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\GW2WvWView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -162,6 +194,12 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\RichData\RichData.csproj">
+      <Project>{69715fb5-40a8-4031-b48f-b1f928c92d40}</Project>
+      <Name>RichData</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

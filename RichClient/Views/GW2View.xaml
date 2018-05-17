@@ -6,27 +6,30 @@
              xmlns:local="clr-namespace:RichClient.Views"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
+    <UserControl.Resources>
+        <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
+    </UserControl.Resources>
     <StackPanel>
-        <StackPanel Visibility="Hidden" Orientation="Horizontal">
+        <StackPanel Visibility="{Binding IsKeyVisible, Converter={StaticResource BooleanToVisibilityConverter}}" Orientation="Horizontal">
             <TextBlock Text="Enter your API-Key here: " />
-            <TextBox Margin="10 0 10 0" Width="100px" />
-            <Button Padding="10 0 10 0" Content="Send" />
+            <TextBox Margin="10 0 10 0" Width="100px" x:Name="APIKey" />
+            <Button Padding="10 0 10 0" Content="Send" x:Name="CheckAPIKey" />
         </StackPanel>
-        <StackPanel Visibility="Visible">
+        <StackPanel Visibility="{Binding IsDataVisible, Converter={StaticResource BooleanToVisibilityConverter}}">
             <Expander FontWeight="Bold" Padding="10 10 0 10" Header="Account">
                 <local:GW2AccountView />
             </Expander>
             <Expander FontWeight="Bold" Padding="10 10 0 10" Header="Characters">
-
+                <local:GW2CharacterView />
             </Expander>
             <Expander FontWeight="Bold" Padding="10 10 0 10" Header="sPvP">
-
+                <local:GW2PvPView />
             </Expander>
             <Expander FontWeight="Bold" Padding="10 10 0 10" Header="WvW">
-
+                <local:GW2WvWView />
             </Expander>
             <Expander FontWeight="Bold" Padding="10 10 0 10" Header="Trading Post">
-
+                <local:GW2TPView />
             </Expander>
         </StackPanel>
     </StackPanel>
