@@ -37,7 +37,7 @@ namespace RichData.GuildWars2
 
                 json = "";
                 json = webClient.DownloadString(Inventory.Address + APIKey);
-                inventory = JsonConvert.DeserializeObject<List<Inventory>>(json);
+                inventory = JsonConvert.DeserializeObject<List<Inventory?>>(json);
 
                 json = "";
                 json = webClient.DownloadString(Masteries.Address + APIKey);
@@ -78,7 +78,7 @@ namespace RichData.GuildWars2
         private string DyesAddress = "https://api.guildwars2.com/v2/account/dyes?access_token=";
         private int[] dyes;
         private List<Finishers> finishers;
-        private List<Inventory> inventory;
+        private List<Inventory?> inventory;
         private List<Masteries> masteries;
         private List<Materials> materials;
         private string MiniAddress = "https://api.guildwars2.com/v2/account/minis?access_token=";
@@ -97,87 +97,87 @@ namespace RichData.GuildWars2
 
     public struct Account
     {
-        public string Id;
-        public string Age;
-        public string Name;
-        public int World;
-        public string[] Guilds;
+        public string Id{ get; set; }
+        public string Age{ get; set; }
+        public string Name{ get; set; }
+        public int World{ get; set; }
+        public string[] Guilds{ get; set; }
         [JsonProperty(PropertyName = "guild_leader")]
-        public string[] GuildLeader;
-        public string Created;
-        public string[] Access;
-        public bool Commander;
+        public string[] GuildLeader{ get; set; }
+        public string Created{ get; set; }
+        public string[] Access{ get; set; }
+        public bool Commander{ get; set; }
         [JsonProperty(PropertyName = "fractal_level")]
-        public int FractalLevel;
+        public int FractalLevel{ get; set; }
         [JsonProperty(PropertyName = "daily_ap")]
-        public int DailyAp;
+        public int DailyAp{ get; set; }
         [JsonProperty(PropertyName = "monthly_ap")]
-        public int MonthlyAp;
+        public int MonthlyAp{ get; set; }
         [JsonProperty(PropertyName = "wvw_rank")]
-        public int WvwRank;
+        public int WvwRank{ get; set; }
         public static string Address = "https://api.guildwars2.com/v2/account?access_token=";
     }
 
     public struct Achievements
     {
-        public int Id;
-        public int Current;
-        public int Max;
-        public bool Done;
-        public int Repeated;
+        public int Id{ get; set; }
+        public int Current{ get; set; }
+        public int Max{ get; set; }
+        public bool Done{ get; set; }
+        public int Repeated{ get; set; }
         // Unsure as to what this is needed for
-        //public int[] Bits;
+        //public int[] Bits{ get; set; }
     }
 
     public struct Bank
     {
-        public int Id;
-        public int Count;
-        public int Skin;
-        public int[] Upgrades;
-        public int[] Infusions;
-        public string Binding;
-        public int Charges;
+        public int Id{ get; set; }
+        public int Count{ get; set; }
+        public int Skin{ get; set; }
+        public int[] Upgrades{ get; set; }
+        public int[] Infusions{ get; set; }
+        public string Binding{ get; set; }
+        public int Charges{ get; set; }
         [JsonProperty(PropertyName = "bound_to")]
-        public string BoundTo;
+        public string BoundTo{ get; set; }
         public static string Address = "https://api.guildwars2.com/v2/account/bank?access_token=";
     }
 
     public struct Finishers
     {
-        public int Id;
-        public bool Permanent;
-        public int Quantity;
+        public int Id{ get; set; }
+        public bool Permanent{ get; set; }
+        public int Quantity{ get; set; }
         public static string Address = "https://api.guildwars2.com/v2/account/finishers?access_token=";
     }
 
     public struct Inventory
     {
-        public int Id;
-        public int Number;
-        public string Binding;
+        public int Id{ get; set; }
+        public int Number{ get; set; }
+        public string Binding{ get; set; }
         public static string Address = "https://api.guildwars2.com/v2/account/inventory?access_token=";
     }
     
     public struct Masteries
     {
-        public int Id;
-        public int Level;
+        public int Id{ get; set; }
+        public int Level{ get; set; }
         public static string Address = "https://api.guildwars2.com/v2/account/masteries?access_token=";
     }
 
     public struct Materials
     {
-        public int Id;
-        public int Category;
-        public int Count;
+        public int Id{ get; set; }
+        public int Category{ get; set; }
+        public int Count{ get; set; }
         public static string Address = "https://api.guildwars2.com/v2/account/materials?access_token=";
     }
     
     public struct Wallet
     {
-        public int Id;
-        public int Value;
+        public int Id{ get; set; }
+        public int Value{ get; set; }
         public static string Address = "https://api.guildwars2.com/v2/account/wallet?access_token=";
     }
 }

@@ -29,6 +29,7 @@ namespace RichClient.ViewModels
                 IsKeyVisible = false;
                 var character = new Characters();
                 CharacterListTask = character.GetCharacterListAsync(APIKey);
+                GW2CharViewModel.APIKey = APIKey;
             }
         }
 
