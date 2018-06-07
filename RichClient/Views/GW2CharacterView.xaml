@@ -4,9 +4,11 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:RichClient.Views"
+             xmlns:cal="clr-namespace:Caliburn.Micro;assembly=Caliburn.Micro"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
-    <Grid>
-        <TextBlock Text="Hier könnte ihr Character sein!" />
-    </Grid>
+    <StackPanel Orientation="Horizontal">
+        <ListBox x:Name="CharacterList"
+                 Width="150" />
+    </StackPanel>
 </UserControl>

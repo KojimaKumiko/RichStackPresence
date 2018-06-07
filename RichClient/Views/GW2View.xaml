@@ -4,6 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:RichClient.Views"
+             xmlns:cal="http://www.caliburnproject.org"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
     <UserControl.Resources>
@@ -19,8 +20,11 @@
             <Expander FontWeight="Bold" Padding="10 10 0 10" Header="Account">
                 <local:GW2AccountView />
             </Expander>
-            <Expander FontWeight="Bold" Padding="10 10 0 10" Header="Characters">
-                <local:GW2CharacterView />
+            <Expander FontWeight="Bold" Padding="10 10 0 10" Header="Characters" cal:Message.Attach="[Event Expanded] = [Action ResolveCharacterList()]">
+                <StackPanel x:Name="CharactersPanel">
+                    <!--<local:GW2CharacterView />-->
+                    <ContentControl Name="GW2CharViewModel" />
+                </StackPanel>
             </Expander>
             <Expander FontWeight="Bold" Padding="10 10 0 10" Header="sPvP">
                 <local:GW2PvPView />
