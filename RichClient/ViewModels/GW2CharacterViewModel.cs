@@ -22,7 +22,18 @@ namespace RichClient.ViewModels
         {
             var characters = new Characters();
             SelectedCharacter = await characters.GetCharacterAsync(charName, APIKey);
-            Console.WriteLine(SelectedCharacter.Name);
+            Age = SelectedCharacter.Age / 3600;
+            CreationTime = DateTime.Parse(SelectedCharacter.Created, null, System.Globalization.DateTimeStyles.RoundtripKind);
+            Level = SelectedCharacter.Level;
+            Console.WriteLine(CreationTime);
+        }
+
+        private void GetEquipment()
+        {
+            foreach(var equip in SelectedCharacter.Equipment)
+            {
+
+            }
         }
 
         public BindableCollection<string> CharacterList { get; set; }
@@ -39,5 +50,38 @@ namespace RichClient.ViewModels
         }
 
         public string APIKey { get; set; }
+        private double? _age;
+        public double? Age
+        {
+            get { return _age; }
+            set
+            {
+                if(value == _age) { return; }
+                _age = value;
+                NotifyOfPropertyChange(() => Age);
+            }
+        }
+        private DateTime? _creationTime;
+        public DateTime? CreationTime
+        {
+            get { return _creationTime; }
+            set
+            {
+                if(value == _creationTime) { return; }
+                _creationTime = value;
+                NotifyOfPropertyChange(() => CreationTime);
+            }
+        }
+        private int? _level;
+        public int? Level
+        {
+            get { return _level; }
+            set
+            {
+                if( value == _level) { return; }
+                _level = value;
+                NotifyOfPropertyChange(() => Level);
+            }
+        }
     }
 }

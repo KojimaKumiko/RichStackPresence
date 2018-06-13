@@ -13,8 +13,17 @@
                  Width="150"
                  cal:Message.Attach="[Event SelectionChanged] = [Action OnSelectionChanged($this)]" />
         </StackPanel>
-        <StackPanel Orientation="Horizontal">
-            <TextBlock Text="{Binding SelectedCharacter.Name}" Width="250" Height="50" />
+        <StackPanel Orientation="Vertical" Margin="25 0 25 0">
+            <TextBlock Text="{Binding SelectedCharacter.Name}" Width="250" Height="25" />
+            <TextBlock Text="{Binding Level}" Width="250" Height="25" />
+            <TextBlock Text="{Binding SelectedCharacter.Race}" Width="250" Height="25" />
+            <TextBlock Text="{Binding SelectedCharacter.Profession}" Width="250" Height="25" />
+            <TextBlock Text="{Binding SelectedCharacter.Guild}" Width="250" Height="25" />
+            <TextBlock Text="{Binding Age}" Width="250" Height="25" />
+            <TextBlock Text="{Binding CreationTime, StringFormat='dd-MM-yyyy H:mm:ss'}" Width="250" Height="25" />
+        </StackPanel>
+        <StackPanel Orientation="Vertical" Margin="25 0 25 0">
+            
         </StackPanel>
     </StackPanel>
 </UserControl>
