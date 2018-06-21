@@ -2,8 +2,8 @@
     ViewData["Title"] = "Guild Wars 2";
 }
     <fieldset>
-        @using (Ajax.BeginForm("GW2", "Home",
-                               new AjaxOptions { UpdateTargetId = "divInterestDeatils" }))
+        @using (Ajax.BeginForm("GW21", "AccountGW2",
+                               new AjaxOptions { UpdateTargetId = "ApiKeySet" }))
         {
             <div id="divInterestDeatils"></div>
             <br />

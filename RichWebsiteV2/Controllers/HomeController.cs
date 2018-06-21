@@ -22,26 +22,6 @@ namespace RichWebsiteV2.Controllers
             return View();
         }
 
-        public ActionResult GW2()
-        {
-            ViewData["Message"] = "Guild";
-
-            return View();
-        }
-
-        [HttpPost]
-        public ActionResult GW2(string apiKey)
-        {
-            string key = apiKey;
-            AccountGW2Controller.setapiKey(apiKey);
-
-            return View("Navigation");
-        }
-
-        public ActionResult Navigation()
-        {
-            return View();
-        }
-
+        
     }
 }
