@@ -31,7 +31,7 @@ namespace RichClient.ViewModels
                 byte[] bytes = Encoding.Default.GetBytes(SelectedCharacter.Name);
                 Name = Encoding.UTF8.GetString(bytes);
 
-                Age = SelectedCharacter.Age / 3600;
+                Age = SelectedCharacter.Age / 3600 + " Hours";
                 CreationTime = DateTime.Parse(SelectedCharacter.Created, null, System.Globalization.DateTimeStyles.RoundtripKind);
                 Level = SelectedCharacter.Level;
                 var guild = new Guild().GetGuild(SelectedCharacter.Guild);
@@ -116,8 +116,8 @@ namespace RichClient.ViewModels
         }
 
         public string APIKey { get; set; }
-        private double? _age;
-        public double? Age
+        private string _age;
+        public string Age
         {
             get { return _age; }
             set
