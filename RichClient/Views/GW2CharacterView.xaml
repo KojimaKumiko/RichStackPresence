@@ -14,16 +14,71 @@
                  cal:Message.Attach="[Event SelectionChanged] = [Action OnSelectionChanged($this)]" />
         </StackPanel>
         <StackPanel Orientation="Vertical" Margin="25 0 25 0">
-            <TextBlock Text="{Binding SelectedCharacter.Name}" Width="250" Height="25" />
+            <TextBlock Text="{Binding Name}" Width="250" Height="25" />
             <TextBlock Text="{Binding Level}" Width="250" Height="25" />
             <TextBlock Text="{Binding SelectedCharacter.Race}" Width="250" Height="25" />
             <TextBlock Text="{Binding SelectedCharacter.Profession}" Width="250" Height="25" />
-            <TextBlock Text="{Binding SelectedCharacter.Guild}" Width="250" Height="25" />
+            <TextBlock Text="{Binding GuildName}" Width="250" Height="25" />
             <TextBlock Text="{Binding Age}" Width="250" Height="25" />
             <TextBlock Text="{Binding CreationTime, StringFormat='dd-MM-yyyy H:mm:ss'}" Width="250" Height="25" />
         </StackPanel>
         <StackPanel Orientation="Vertical" Margin="25 0 25 0">
-            
+            <Image Source="{Binding ArmorList[0].Icon}" Height="50" Width="50">
+                <Image.ToolTip>
+                    <ToolTip Content="{Binding ArmorList[0].Name}" />
+                </Image.ToolTip>
+            </Image>
+            <Image Source="{Binding ArmorList[1].Icon}" Height="50" Width="50">
+                <Image.ToolTip>
+                    <ToolTip Content="{Binding ArmorList[1].Name}" />
+                </Image.ToolTip>
+            </Image>
+            <Image Source="{Binding ArmorList[2].Icon}" Height="50" Width="50">
+                <Image.ToolTip>
+                    <ToolTip Content="{Binding ArmorList[2].Name}" />
+                </Image.ToolTip>
+            </Image>
+            <Image Source="{Binding ArmorList[3].Icon}" Height="50" Width="50">
+                <Image.ToolTip>
+                    <ToolTip Content="{Binding ArmorList[3].Name}" />
+                </Image.ToolTip>
+            </Image>
+            <Image Source="{Binding ArmorList[4].Icon}" Height="50" Width="50">
+                <Image.ToolTip>
+                    <ToolTip Content="{Binding ArmorList[4].Name}" />
+                </Image.ToolTip>
+            </Image>
+            <Image Source="{Binding ArmorList[5].Icon}" Height="50" Width="50">
+                <Image.ToolTip>
+                    <ToolTip Content="{Binding ArmorList[5].Name}" />
+                </Image.ToolTip>
+            </Image>
+        </StackPanel>
+        <StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <Image Source="{Binding WeaponList[0].Icon}" Height="50" Width="50">
+                    <Image.ToolTip>
+                        <ToolTip Content="{Binding WeaponList[0].Name}" />
+                    </Image.ToolTip>
+                </Image>
+                <Image Source="{Binding WeaponList[1].Icon}" Height="50" Width="50">
+                    <Image.ToolTip>
+                        <ToolTip Content="{Binding WeaponList[1].Name}" />
+                    </Image.ToolTip>
+                </Image>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <Image Source="{Binding WeaponList[2].Icon}" Height="50" Width="50" >
+                    <Image.ToolTip>
+                        <ToolTip Content="{Binding WeaponList[2].Name}" />
+                    </Image.ToolTip>
+                </Image>
+                <Image Source="{Binding WeaponList[3].Icon}" Height="50" Width="50">
+                    <Image.ToolTip>
+                        <ToolTip Content="{Binding WeaponList[3].Name}" />
+                    </Image.ToolTip>
+                </Image>
+            </StackPanel>
         </StackPanel>
     </StackPanel>
 </UserControl>

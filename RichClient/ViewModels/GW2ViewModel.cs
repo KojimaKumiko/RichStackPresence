@@ -35,10 +35,15 @@ namespace RichClient.ViewModels
 
         public async void ResolveCharacterList()
         {
+            foreach(var character in GW2CharViewModel.CharacterList.ToList())
+            {
+                GW2CharViewModel.CharacterList.Remove(character);
+            }
             var charList = await CharacterListTask;
             for(int i = 0; i < charList.Length; i++)
             {
-                GW2CharViewModel.CharacterList.Add(charList[i]);
+                var character = charList[i];
+                GW2CharViewModel.CharacterList.Add(character);
             }
         }
 
