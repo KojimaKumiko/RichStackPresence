@@ -82,9 +82,16 @@ namespace RichWebsite.Controllers
             //}
             var characters = new Characters();
             var selectedChar = new Character();
+            var guild = new Guild();
+            var guilddata = new GuildData();
             selectedChar = await characters.GetCharacterAsync(name, _key);
             ViewBag.Name = selectedChar.Name;
-            ViewBag.
+            ViewBag.Level = selectedChar.Level;
+            ViewBag.Race = selectedChar.Race;
+            ViewBag.Profession = selectedChar.Profession;
+            guilddata = guild.GetGuild(selectedChar.Guild);
+            ViewBag.Guildname = guilddata.Name + " [" + guilddata.Tag + "]";
+            ViewBag.Deaths = selectedChar.Deaths;
             return View();
         }
 
