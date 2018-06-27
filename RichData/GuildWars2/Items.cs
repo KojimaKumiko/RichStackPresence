@@ -12,52 +12,15 @@ namespace RichData.GuildWars2
 {
     public class Items
     {
-        // not really needed.
-        // TODO(zelti): remove unneceassery method
-        //public void SetItemDetailsType(Item item)
-        //{
-        //    switch (item.Type)
-        //    {
-        //        case "Armor":
-        //            item.Details = (Armor)item.Details;
-        //            break;
-        //        case "Back":
-        //            item.Details = (Back)item.Details;
-        //            break;
-        //        case "Bag":
-        //            item.Details = (Bag)item.Details;
-        //            break;
-        //        case "Consumable":
-        //            item.Details = (Consumable)item.Details;
-        //            break;
-        //        case "Container":
-        //            item.Details = (Container)item.Details;
-        //            break;
-        //        case "Gathering":
-        //            item.Details = (Gathering)item.Details;
-        //            break;
-        //        case "Gizmo":
-        //            item.Details = (Gizmo)item.Details;
-        //            break;
-        //        case "MiniPet":
-        //            item.Details = (MiniPet)item.Details;
-        //            break;
-        //        case "Tool":
-        //            item.Details = (Tool)item.Details;
-        //            break;
-        //        case "Trinket":
-        //            item.Details = (Trinket)item.Details;
-        //            break;
-        //        case "UpgradeComponent":
-        //            item.Details = (UpgradeComponent)item.Details;
-        //            break;
-        //        case "Weapon":
-        //            item.Details = (Weapon)item.Details;
-        //            break;
-        //        default:
-        //            break;
-        //    }
-        //}
+        public int[] ItemList()
+        {
+            using(var webClient = new WebClient())
+            {
+                var json = webClient.DownloadString(Adress);
+                var itemList = JArray.Parse(json).ToObject<int[]>();
+                return itemList;
+            }
+        }
 
         public Item GetItem(int ID)
         {
