@@ -1,14 +1,70 @@
 ﻿using Newtonsoft.Json;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Net;
 
 namespace RichData.GuildWars2
 {
     public class PvP
     {
+        public PvP(string APIKey)
+        {
+            _apiKey = APIKey;
+        }
+
+        public PvPStats GetPvPStats()
+        {
+            using(var webClient = new WebClient())
+            {
+                var json = webClient.DownloadString(PvPStats.Address + _apiKey);
+                return JsonConvert.DeserializeObject<PvPStats>(json);
+            }
+        }
+
+        public string[] GetPvPGames()
+        {
+            using(var webClient = new WebClient())
+            {
+                var json = webClient.DownloadString(PvPGames.Address + _apiKey);
+                return JsonConvert.DeserializeObject<string[]>(json);
+            }
+        }
+
+        public PvPGames GetPvPGame(string GameID)
+        {
+            using(var webClient = new WebClient())
+            {
+                var json = webClient.DownloadString(PvPGames.Address + _apiKey + "&ids=" + GameID);
+                return JsonConvert.DeserializeObject<PvPGames>(json);
+            }
+        }
+
+        public PvPStandings GetPvPStandings()
+        {
+            using(var webClient = new WebClient())
+            {
+                var json = webClient.DownloadString(PvPStandings.Address + _apiKey);
+                return JsonConvert.DeserializeObject<PvPStandings>(json);
+            }
+        }
+
+        public string[] GetPvPRanks()
+        {
+            using(var webClient = new WebClient())
+            {
+                var json = webClient.DownloadString(PvPRanks.Address);
+                return JsonConvert.DeserializeObject<string[]>(json);
+            }
+        }
+        
+        public PvPRanks GetPvPRankInformation(int rankID)
+        {
+            using(var webClient = new WebClient())
+            {
+                var json = webClient.DownloadString(PvPRanks.Address + "/" + rankID);
+                return JsonConvert.DeserializeObject<PvPRanks>(json);
+            }
+        }
+
+        private string _apiKey;
     }
 
     public struct PvPStats
@@ -22,6 +78,7 @@ namespace RichData.GuildWars2
         public Aggregate Aggregate { get; set; }
         public Professions Professions { get; set; }
         public Ladders Ladders { get; set; }
+        public static string Address = "https://api.guildwars2.com/v2/pvp/stats?access_token=";
     }
 
     public struct Professions
@@ -61,6 +118,7 @@ namespace RichData.GuildWars2
         [JsonProperty(PropertyName = "rating_change")]
         public string RatingChange { get; set; }
         public string Season { get; set; }
+        public static string Address = "https://api.guildwars2.com/v2/pvp/games?access_token=";
     }
 
     public struct Scores
@@ -75,6 +133,7 @@ namespace RichData.GuildWars2
         public Best[] Best { get; set; }
         [JsonProperty(PropertyName = "season_id")]
         public int SeasonID { get; set; }
+        public static string Address = "https://api.guildwars2.com/v2/pvp/standings?access_token=";
     }
 
     public struct Current
@@ -111,6 +170,7 @@ namespace RichData.GuildWars2
         [JsonProperty(PropertyName = "max_rank")]
         public int MaxRank { get; set; }
         public Levels[] Levels { get; set; }
+        public static string Address = "https://api.guildwars2.com/v2/pvp/ranks";
     }
 
     public struct Levels
