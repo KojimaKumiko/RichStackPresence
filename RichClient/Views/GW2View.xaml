@@ -10,31 +10,32 @@
     <UserControl.Resources>
         <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
     </UserControl.Resources>
-    <StackPanel>
-        <StackPanel Visibility="{Binding IsKeyVisible, Converter={StaticResource BooleanToVisibilityConverter}}" Orientation="Horizontal">
-            <TextBlock Text="Enter your API-Key here: " />
-            <TextBox Margin="10 0 10 0" Width="100px" x:Name="APIKey" />
-            <Button Padding="10 0 10 0" Content="Send" x:Name="CheckAPIKey" />
+    <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
+        <StackPanel>
+            <StackPanel Visibility="{Binding IsKeyVisible, Converter={StaticResource BooleanToVisibilityConverter}}" Orientation="Horizontal">
+                <TextBlock Text="Enter your API-Key here: " />
+                <TextBox Margin="10 0 10 0" Width="100px" x:Name="APIKey" />
+                <Button Padding="10 0 10 0" Content="Send" x:Name="CheckAPIKey" />
+            </StackPanel>
+            <StackPanel Visibility="{Binding IsDataVisible, Converter={StaticResource BooleanToVisibilityConverter}}">
+                <Expander FontWeight="Bold" Padding="10 10 0 10" Header="Account" cal:Message.Attach="[Event Expanded] = [Action InitAccViewModel()]">
+                    <ContentControl Name="GW2AccViewModel" />
+                </Expander>
+                <Expander FontWeight="Bold" Padding="10 10 0 10" Header="Characters" cal:Message.Attach="[Event Expanded] = [Action ResolveCharacterList()]">
+                    <StackPanel x:Name="CharactersPanel">
+                        <ContentControl Name="GW2CharViewModel"  />
+                    </StackPanel>
+                </Expander>
+                <Expander FontWeight="Bold" Padding="10 10 0 10" Header="sPvP" cal:Message.Attach="[Event Expanded] = [Action InitPvPViewModel()]">
+                    <ContentControl Name="GW2PvPViewModel" />
+                </Expander>
+                <Expander FontWeight="Bold" Padding="10 10 0 10" Header="WvW">
+                    <local:GW2WvWView />
+                </Expander>
+                <Expander FontWeight="Bold" Padding="10 10 0 10" Header="Trading Post">
+                    <local:GW2TPView />
+                </Expander>
+            </StackPanel>
         </StackPanel>
-        <StackPanel Visibility="{Binding IsDataVisible, Converter={StaticResource BooleanToVisibilityConverter}}">
-            <Expander FontWeight="Bold" Padding="10 10 0 10" Header="Account">
-                <local:GW2AccountView />
-            </Expander>
-            <Expander FontWeight="Bold" Padding="10 10 0 10" Header="Characters" cal:Message.Attach="[Event Expanded] = [Action ResolveCharacterList()]">
-                <StackPanel x:Name="CharactersPanel">
-                    <!--<local:GW2CharacterView />-->
-                    <ContentControl Name="GW2CharViewModel" />
-                </StackPanel>
-            </Expander>
-            <Expander FontWeight="Bold" Padding="10 10 0 10" Header="sPvP">
-                <local:GW2PvPView />
-            </Expander>
-            <Expander FontWeight="Bold" Padding="10 10 0 10" Header="WvW">
-                <local:GW2WvWView />
-            </Expander>
-            <Expander FontWeight="Bold" Padding="10 10 0 10" Header="Trading Post">
-                <local:GW2TPView />
-            </Expander>
-        </StackPanel>
-    </StackPanel>
+    </ScrollViewer>
 </UserControl>

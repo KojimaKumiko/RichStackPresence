@@ -10,89 +10,129 @@ namespace RichData.GuildWars2
 {
     public class Authenticated
     {
-        public Authenticated()
+        public Authenticated(string APIKey)
         {
-            // TODO(zelTi): remove local APIKey
-            string APIKey = "AF7667CF-5996-5648-9184-2C45496603CC0DAA4380-B6FD-4361-90DF-29E7C9E5739C";
-            // WebClient used to download the Json from the RESTFull API
+            _apiKey = APIKey;
+        }
+
+        public Account GetAccount()
+        {
             using (var webClient = new WebClient())
             {
-                //Parse the JSON to a C# Object, using the struct defined below
-                var json = webClient.DownloadString(Account.Address + APIKey);
-                account = JsonConvert.DeserializeObject<Account>(json);
-                
-                json = "";
-                json = webClient.DownloadString(Bank.Address + APIKey);
-                bank = JsonConvert.DeserializeObject<List<Bank?>>(json);
-                // Remove all null values in the List (null = empty slot)
-                bank.RemoveAll(b => b.HasValue == false);
-
-                json = "";
-                json = webClient.DownloadString(DyesAddress + APIKey);
-                dyes = JsonConvert.DeserializeObject<int[]>(json);
-
-                json = "";
-                json = webClient.DownloadString(Finishers.Address + APIKey);
-                finishers = JsonConvert.DeserializeObject<List<Finishers>>(json);
-
-                json = "";
-                json = webClient.DownloadString(Inventory.Address + APIKey);
-                inventory = JsonConvert.DeserializeObject<List<Inventory?>>(json);
-
-                json = "";
-                json = webClient.DownloadString(Masteries.Address + APIKey);
-                masteries = JsonConvert.DeserializeObject<List<Masteries>>(json);
-
-                json = "";
-                json = webClient.DownloadString(Materials.Address + APIKey);
-                materials = JsonConvert.DeserializeObject<List<Materials>>(json);
-
-                json = "";
-                json = webClient.DownloadString(MiniAddress + APIKey);
-                minis = JsonConvert.DeserializeObject<int[]>(json);
-
-                json = "";
-                json = webClient.DownloadString(OutfitsAddress + APIKey);
-                outfits = JsonConvert.DeserializeObject<int[]>(json);
-
-                json = "";
-                json = webClient.DownloadString(RecipeAddress + APIKey);
-                recipes = JsonConvert.DeserializeObject<int[]>(json);
-
-                json = "";
-                json = webClient.DownloadString(SkinAddress + APIKey);
-                skins = JsonConvert.DeserializeObject<int[]>(json);
-
-                json = "";
-                json = webClient.DownloadString(TitleAddress + APIKey);
-                titles = JsonConvert.DeserializeObject<int[]>(json);
-
-                json = "";
-                json = webClient.DownloadString(Wallet.Address + APIKey);
-                wallet = JsonConvert.DeserializeObject<List<Wallet>>(json);
+                var json = webClient.DownloadString(Account.Address + _apiKey);
+                return JsonConvert.DeserializeObject<Account>(json);
             }
         }
 
-        private Account account;
-        private List<Bank?> bank;
-        private string DyesAddress = "https://api.guildwars2.com/v2/account/dyes?access_token=";
-        private int[] dyes;
-        private List<Finishers> finishers;
-        private List<Inventory?> inventory;
-        private List<Masteries> masteries;
-        private List<Materials> materials;
-        private string MiniAddress = "https://api.guildwars2.com/v2/account/minis?access_token=";
-        private int[] minis;
-        private string OutfitsAddress = "https://api.guildwars2.com/v2/account/outfits?access_token=";
-        private int[] outfits;
-        private string RecipeAddress = "https://api.guildwars2.com/v2/account/recipes?access_token=";
-        private int[] recipes;
-        private string SkinAddress = "https://api.guildwars2.com/v2/account/skins?access_token=";
-        private int[] skins;
-        private string TitleAddress = "https://api.guildwars2.com/v2/account/titles?access_token=";
-        private int[] titles;
-        private List<Wallet> wallet;
+        public List<Bank?> GetBank()
+        {
+            using (var webClient = new WebClient())
+            {
+                var json = webClient.DownloadString(Bank.Address + _apiKey);
+                return JsonConvert.DeserializeObject<List<Bank?>>(json);
+            }
+        }
 
+        public int[] GetDyes()
+        {
+            using(var webClient = new WebClient())
+            {
+                var json = webClient.DownloadString("https://api.guildwars2.com/v2/account/dyes?access_token=" + _apiKey);
+                return JsonConvert.DeserializeObject<int[]>(json);
+            }
+        }
+
+        public List<Finishers> GetFinishers()
+        {
+            using (var webClient = new WebClient())
+            {
+                var json = webClient.DownloadString(Finishers.Address + _apiKey);
+                return JsonConvert.DeserializeObject<List<Finishers>>(json);
+            }
+        }
+
+        public List<Inventory> GetInventories()
+        {
+            using (var webClient = new WebClient())
+            {
+                var json = webClient.DownloadString(Inventory.Address + _apiKey);
+                return JsonConvert.DeserializeObject<List<Inventory>>(json);
+            }
+        }
+
+        public List<Masteries> GetMasteries()
+        {
+            using (var webClient = new WebClient())
+            {
+                var json = webClient.DownloadString(Masteries.Address + _apiKey);
+                return JsonConvert.DeserializeObject<List<Masteries>>(json);
+            }
+        }
+
+        public List<Materials> GetMaterials()
+        {
+            using (var webClient = new WebClient())
+            {
+                var json = webClient.DownloadString(Materials.Address + _apiKey);
+                return JsonConvert.DeserializeObject<List<Materials>>(json);
+            }
+        }
+
+        public int[] GetMinis()
+        {
+            using (var webClient = new WebClient())
+            {
+                var json = webClient.DownloadString("https://api.guildwars2.com/v2/account/minis?access_token=" + _apiKey);
+                return JsonConvert.DeserializeObject<int[]>(json);
+            }
+        }
+
+        public int[] GetOutfits()
+        {
+            using (var webClient = new WebClient())
+            {
+                var json = webClient.DownloadString("https://api.guildwars2.com/v2/account/outfits?access_token=" + _apiKey);
+                return JsonConvert.DeserializeObject<int[]>(json);
+            }
+        }
+
+        public int[] GetRecipes()
+        {
+            using (var webClient = new WebClient())
+            {
+                var json = webClient.DownloadString("https://api.guildwars2.com/v2/account/recipes?access_token=" + _apiKey);
+                return JsonConvert.DeserializeObject<int[]>(json);
+            }
+        }
+
+        public int[] GetSkins()
+        {
+            using (var webClient = new WebClient())
+            {
+                var json = webClient.DownloadString("https://api.guildwars2.com/v2/account/skins?access_token=" + _apiKey);
+                return JsonConvert.DeserializeObject<int[]>(json);
+            }
+        }
+
+        public int[] GetTitles()
+        {
+            using (var webClient = new WebClient())
+            {
+                var json = webClient.DownloadString("https://api.guildwars2.com/v2/account/titles?access_token=" + _apiKey);
+                return JsonConvert.DeserializeObject<int[]>(json);
+            }
+        }
+
+        public List<Wallet> GetWallet()
+        {
+            using (var webClient = new WebClient())
+            {
+                var json = webClient.DownloadString(Wallet.Address + _apiKey);
+                return JsonConvert.DeserializeObject<List<Wallet>>(json);
+            }
+        }
+
+        private string _apiKey;
     }
 
     public struct Account
