@@ -20,7 +20,7 @@
             <TextBlock Text="{Binding SelectedCharacter.Profession}" Width="250" Height="25" />
             <TextBlock Text="{Binding GuildName}" Width="250" Height="25" />
             <TextBlock Text="{Binding Age}" Width="250" Height="25" />
-            <TextBlock Text="{Binding CreationTime, StringFormat='dd-MM-yyyy H:mm:ss'}" Width="250" Height="25" />
+            <TextBlock Text="{Binding CreationTime, StringFormat='dd.MM.yyyy H:mm:ss'}" Width="250" Height="25" />
         </StackPanel>
         <StackPanel Orientation="Vertical" Margin="25 0 25 0">
             <Image Source="{Binding ArmorList[0].Icon}" Height="50" Width="50">

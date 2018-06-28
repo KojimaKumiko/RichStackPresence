@@ -6,7 +6,50 @@
              xmlns:local="clr-namespace:RichClient.Views"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
-    <Grid>
-        <TextBlock Text="Test" />
-    </Grid>
+    <StackPanel>
+        <StackPanel Orientation="Horizontal">
+            <TextBlock Text="Account Name: " />
+            <TextBlock FontWeight="Normal" Text="{Binding Account.Name}" />
+        </StackPanel>
+        <StackPanel Orientation="Horizontal">
+            <TextBlock Text="Age: " />
+            <TextBlock FontWeight="Normal" Text="{Binding Age}" />
+        </StackPanel>
+        <StackPanel Orientation="Horizontal">
+            <TextBlock Text="World: " />
+            <TextBlock FontWeight="Normal" Text="{Binding World}" />
+        </StackPanel>
+        <StackPanel Orientation="Horizontal">
+            <TextBlock Text="Created: " />
+            <TextBlock FontWeight="Normal" Text="{Binding Created, StringFormat='dd.MM.yyyy H:mm:ss'}" />
+        </StackPanel>
+        <StackPanel Orientation="Horizontal">
+            <TextBlock Text="Access: " />
+            <TextBlock FontWeight="Normal" Text="{Binding Access}" />
+        </StackPanel>
+        <StackPanel Orientation="Horizontal">
+            <TextBlock Text="Guilds: " />
+            <TextBlock FontWeight="Normal" Text="{Binding Guilds}" />
+        </StackPanel>
+        <StackPanel Orientation="Horizontal">
+            <TextBlock Text="Commander: " />
+            <TextBlock FontWeight="Normal" Text="{Binding Account.Commander}" />
+        </StackPanel>
+        <StackPanel Orientation="Horizontal">
+            <TextBlock Text="Fractal Level: " />
+            <TextBlock FontWeight="Normal" Text="{Binding Account.FractalLevel}" />
+        </StackPanel>
+        <StackPanel Orientation="Horizontal">
+            <TextBlock Text="Daily AP Total: " />
+            <TextBlock FontWeight="Normal" Text="{Binding Account.DailyAp}" />
+        </StackPanel>
+        <StackPanel Orientation="Horizontal">
+            <TextBlock Text="Monthly AP Total: " />
+            <TextBlock FontWeight="Normal" Text="{Binding Account.MonthlyAp}" />
+        </StackPanel>
+        <StackPanel Orientation="Horizontal">
+            <TextBlock Text="WvW Rank: " />
+            <TextBlock FontWeight="Normal" Text="{Binding Account.WvwRank}" />
+        </StackPanel>
+    </StackPanel>
 </UserControl>

@@ -47,6 +47,11 @@ namespace RichClient.ViewModels
             }
         }
 
+        public void InitAccViewModel()
+        {
+            GW2AccViewModel = new GW2AccountViewModel(APIKey);
+        }
+
         #region Properties
 
         private string _APIKey;
@@ -87,6 +92,18 @@ namespace RichClient.ViewModels
             {
                 _gw2CharViewModel = value;
                 NotifyOfPropertyChange(() => GW2CharViewModel);
+            }
+        }
+        private GW2AccountViewModel _gw2AccViewModel;
+        public GW2AccountViewModel GW2AccViewModel
+        {
+            get { return _gw2AccViewModel; }
+            set
+            {
+                if (value == _gw2AccViewModel)
+                    return;
+                _gw2AccViewModel = value;
+                NotifyOfPropertyChange(() => GW2AccViewModel);
             }
         }
         public Task<string[]> CharacterListTask { get; set; }

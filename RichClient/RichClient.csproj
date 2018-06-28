@@ -98,6 +98,7 @@
     </ApplicationDefinition>
     <Compile Include="AppBootstrapper.cs" />
     <Compile Include="IMainViewTabItem.cs" />
+    <Compile Include="ObservableDictionary.cs" />
     <Compile Include="ShellViewModel.cs" />
     <Compile Include="ViewModels\GW2AccountViewModel.cs" />
     <Compile Include="ViewModels\GW2CharacterViewModel.cs" />
