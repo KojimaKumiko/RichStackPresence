@@ -1,0 +1,47 @@
+﻿@{
+    ViewData["Title"] = "League of Legends";
+}
+<h2>@ViewData["Title"]</h2>
+<h3>@ViewData["Message"]</h3>
+
+<p>LoL ifos.</p>
+
+<fieldset>
+    @using (Ajax.BeginForm("LoL", "AccountLoL",
+                           new AjaxOptions { UpdateTargetId = "ApiKeySet" }))
+    {
+        <div id="loloyo"></div>
+        <br />
+        <br />
+        @Html.Label("Select Region ")
+        <text>&nbsp;</text>
+        <select name="regi" id="regi" >
+            <option value="TR">Turkey</option>
+            <option value="RU">Russia</option>
+            <option value="OCE">Oceania</option>
+            <option value="LAS">LAS</option>
+            <option value="LAN">LAN</option>
+            <option value="KR">Korea</option>
+            <option value="NA" selected ="selected">NA</option>
+            <option value="EUW">EUW</option>
+            <option value="EUNE">EUNE</option>
+            <option value="JP">Japan</option>
+            <option value="">Brazil</option>
+        </select>
+        <br />
+        @Html.Label("Insert Username ")
+        <text>&nbsp;</text>
+        @Html.TextBox("SummonerName")
+        <text>&nbsp;</text>
+
+        <button>Submit</button>
+    }
+    <div >
+        <p>
+            <img src="@ViewBag.SummonerIcon" style="width:100px;height:100px;"/>&nbsp;
+            <font size="15">@ViewBag.SummonerName&nbsp;@ViewBag.lvl</font>
+            
+        </p>
+    </div>
+
+</fieldset>

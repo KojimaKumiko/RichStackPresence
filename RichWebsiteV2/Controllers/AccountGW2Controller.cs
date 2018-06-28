@@ -48,6 +48,7 @@ namespace RichWebsite.Controllers
         
         public ActionResult Items()
         {
+            
             return View();
         }
 
@@ -76,6 +77,7 @@ namespace RichWebsite.Controllers
         {
             _key = Session["Key"].ToString();
             string name = submit;
+            int sec = 0, min = 0, hours = 0;
             //for (int i = 1; i < Session.Contents.Count; i++)
             //{
             //    characterList[i - 1] = Session[i].ToString();
@@ -89,9 +91,15 @@ namespace RichWebsite.Controllers
             ViewBag.Level = selectedChar.Level;
             ViewBag.Race = selectedChar.Race;
             ViewBag.Profession = selectedChar.Profession;
-            guilddata = guild.GetGuild(selectedChar.Guild);
+            guilddata = guild.GetGuild(selectedChar.Guild); 
             ViewBag.Guildname = guilddata.Name + " [" + guilddata.Tag + "]";
             ViewBag.Deaths = selectedChar.Deaths;
+            sec=(int)selectedChar.Age;
+            min = sec / 60;
+            sec = sec - min * 60;
+            hours = min / 60;
+            min = min - hours * 60;
+            ViewBag.Age = hours.ToString() + " hours " + min.ToString() + " min and " + sec.ToString() + " sec";
             return View();
         }
 
