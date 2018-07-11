@@ -11,7 +11,7 @@ namespace RichData
     {
         public static string GetKey()
         {
-            Console.WriteLine(Environment.CurrentDirectory);
+            Console.WriteLine("\n\n"+Environment.CurrentDirectory+"\n\n");
             if (!File.Exists(@"Config\LeagueAPIKey.json"))
             {
                 new Config().SaveToFile(@"Config\LeagueAPIKey.json", "Config");
