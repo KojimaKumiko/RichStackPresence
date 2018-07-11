@@ -4,8 +4,6 @@
 <h2>@ViewData["Title"]</h2>
 <h3>@ViewData["Message"]</h3>
 
-<p>LoL ifos.</p>
-
 <fieldset>
     @using (Ajax.BeginForm("LoL", "AccountLoL",
                            new AjaxOptions { UpdateTargetId = "ApiKeySet" }))
@@ -26,7 +24,7 @@
             <option value="EUW">EUW</option>
             <option value="EUNE">EUNE</option>
             <option value="JP">Japan</option>
-            <option value="">Brazil</option>
+            <option value="BR">Brazil</option>
         </select>
         <br />
         @Html.Label("Insert Username ")

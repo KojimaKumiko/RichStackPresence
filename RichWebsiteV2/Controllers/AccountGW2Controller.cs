@@ -75,6 +75,7 @@ namespace RichWebsite.Controllers
 
         public async Task<ActionResult> spezificCharacter(String submit)
         {
+
             _key = Session["Key"].ToString();
             string name = submit;
             int sec = 0, min = 0, hours = 0;
@@ -91,8 +92,15 @@ namespace RichWebsite.Controllers
             ViewBag.Level = selectedChar.Level;
             ViewBag.Race = selectedChar.Race;
             ViewBag.Profession = selectedChar.Profession;
-            guilddata = guild.GetGuild(selectedChar.Guild); 
-            ViewBag.Guildname = guilddata.Name + " [" + guilddata.Tag + "]";
+            try
+            {
+                guilddata = guild.GetGuild(selectedChar.Guild);
+                ViewBag.Guildname = guilddata.Name + " [" + guilddata.Tag + "]";
+            }
+            catch (Exception)
+            {
+                ViewBag.Guildname = " - ";
+            }
             ViewBag.Deaths = selectedChar.Deaths;
             sec=(int)selectedChar.Age;
             min = sec / 60;
