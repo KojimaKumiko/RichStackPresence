@@ -35,12 +35,12 @@ namespace RichClient.ViewModels
 
         public async void ResolveCharacterList()
         {
-            foreach(var character in GW2CharViewModel.CharacterList.ToList())
+            foreach (var character in GW2CharViewModel.CharacterList.ToList())
             {
                 GW2CharViewModel.CharacterList.Remove(character);
             }
             var charList = await CharacterListTask;
-            for(int i = 0; i < charList.Length; i++)
+            for (int i = 0; i < charList.Length; i++)
             {
                 var character = charList[i];
                 GW2CharViewModel.CharacterList.Add(character);
@@ -55,6 +55,11 @@ namespace RichClient.ViewModels
         public void InitPvPViewModel()
         {
             GW2PvPViewModel = new GW2PvPViewModel(APIKey);
+        }
+
+        public void InitWvWViewModel()
+        {
+            GW2WvWViewModel = new GW2WvWViewModel(APIKey);
         }
 
         #region Properties
@@ -121,6 +126,18 @@ namespace RichClient.ViewModels
                     return;
                 _gw2PvPViewModel = value;
                 NotifyOfPropertyChange(() => GW2PvPViewModel);
+            }
+        }
+        private GW2WvWViewModel _gw2WvWViewModel;
+        public GW2WvWViewModel GW2WvWViewModel
+        {
+            get { return _gw2WvWViewModel; }
+            set
+            {
+                if (value == _gw2WvWViewModel)
+                    return;
+                _gw2WvWViewModel = value;
+                NotifyOfPropertyChange(() => GW2WvWViewModel);
             }
         }
         public Task<string[]> CharacterListTask { get; set; }

@@ -29,8 +29,8 @@
                 <Expander FontWeight="Bold" Padding="10 10 0 10" Header="sPvP" cal:Message.Attach="[Event Expanded] = [Action InitPvPViewModel()]">
                     <ContentControl Name="GW2PvPViewModel" />
                 </Expander>
-                <Expander FontWeight="Bold" Padding="10 10 0 10" Header="WvW">
-                    <local:GW2WvWView />
+                <Expander FontWeight="Bold" Padding="10 10 0 10" Header="WvW" cal:Message.Attach="[Event Expanded] = [Action InitWvWViewModel()]">
+                    <ContentControl Name="GW2WvWViewModel" />
                 </Expander>
                 <Expander FontWeight="Bold" Padding="10 10 0 10" Header="Trading Post">
                     <local:GW2TPView />

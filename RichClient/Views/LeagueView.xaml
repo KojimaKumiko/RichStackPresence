@@ -37,12 +37,12 @@
                     <StackPanel>
                         <StackPanel Orientation="Horizontal">
                             <TextBlock Text="Summoner Name" />
-                            <TextBox Text="{Binding SummonerName}" Width="150" Margin="10 0 10 0" />
+                            <TextBox Text="{Binding SummonerName}" Width="150" Margin="10 0 10 0" cal:Message.Attach="[Event KeyDown] = [Action SummonerInfoKeyDown($eventArgs)]" />
                             <TextBlock Text="Region" />
-                            <TextBox Text="{Binding LolRegion}" Width="50" Margin="10 0 10 0" />
+                            <ComboBox Name="LolRegions" Width="75" Margin="10 0 10 0" SelectedIndex="0" cal:Message.Attach="[Event SelectionChanged] = [Action RegionChanged($this)]" />
                             <Button Content="Show" Name="ShowSummonerInformation" />
                         </StackPanel>
-                        <StackPanel Orientation="Vertical" HorizontalAlignment="Left">
+                        <StackPanel Orientation="Vertical" HorizontalAlignment="Left" Visibility="{Binding ShowSummoner, Converter={StaticResource BooleanToVisibilityConverter}}">
                             <Image Source="{Binding SummonerIcon}" Height="50">
                                 <Image.ToolTip>
                                     <ToolTip Content="{Binding SummonerName}" />
@@ -52,10 +52,17 @@
                                 <TextBlock Text="Level: " />
                                 <TextBlock Text="{Binding SummonerLevel}" />
                             </StackPanel>
-                            <StackPanel>
-                                <TextBlock Text="{Binding RankedQue}" />
-                                <TextBlock Text="{Binding RankedName}" />
-                                <TextBlock Text="{Binding RankedRank}" />
+                            <StackPanel Orientation="Horizontal">
+                                <StackPanel Orientation="Vertical">
+                                    <TextBlock Text="{Binding RankedQue}" />
+                                    <TextBlock Text="{Binding RankedName}" />
+                                    <TextBlock Text="{Binding RankedRank}" />
+                                </StackPanel>
+                                <StackPanel Orientation="Vertical">
+                                    <TextBlock Text="{Binding FlexRanked}" />
+                                    <TextBlock Text="{Binding FlexRankedName}" />
+                                    <TextBlock Text="{Binding FlexRankedRank}" />
+                                </StackPanel>
                             </StackPanel>
                         </StackPanel>
                     </StackPanel>
@@ -64,12 +71,12 @@
                     <StackPanel>
                         <StackPanel Orientation="Horizontal" Margin="0 10 0 10">
                             <TextBlock Text="Summoner Name:" />
-                            <TextBox Text="{Binding SummonerName}" Width="150" HorizontalAlignment="Left" Margin="10 0 10 0" />
+                            <TextBox Text="{Binding SummonerName}" Width="150" HorizontalAlignment="Left" Margin="10 0 10 0" cal:Message.Attach="[Event KeyDown] = [Action ChampionMasteriesKeyDown($eventArgs)]" />
                             <TextBlock Text="Region:" />
-                            <TextBox Text="{Binding LolRegion}" Width="50" HorizontalAlignment="Left" Margin="10 0 10 0" />
+                            <ComboBox Name="LolRegions2" Width="75" Margin="10 0 10 0" SelectedIndex="0" cal:Message.Attach="[Event SelectionChanged] = [Action RegionChanged($this)]" />
                             <Button Name="SearchMastery" Content="Search" Width="100" />
                         </StackPanel>
-                        <StackPanel Orientation="Horizontal">
+                        <StackPanel Orientation="Horizontal" Visibility="{Binding ShowMasteries, Converter={StaticResource BooleanToVisibilityConverter}}">
                             <StackPanel Orientation="Vertical">
                                 <Image Source="{Binding ChampionIcon[0]}" Height="75">
                                     <Image.ToolTip>
@@ -79,9 +86,9 @@
                                 <StackPanel Orientation="Horizontal">
                                     <TextBlock Text="Level: " />
                                     <TextBlock Text="{Binding ChampionLevel[0]}" Margin="5 0 10 0" />
-                                    <TextBlock Text="Mastery Points: " />
-                                    <TextBlock Text="{Binding ChampionPoints[0]}" Margin="5 0 5 0" />
                                 </StackPanel>
+                                <TextBlock Text="Mastery Points:" />
+                                <TextBlock Text="{Binding ChampionPoints[0]}" Margin="5 0 5 0" />
                             </StackPanel>
 
                             <StackPanel Orientation="Vertical">
@@ -93,9 +100,9 @@
                                 <StackPanel Orientation="Horizontal">
                                     <TextBlock Text="Level: " />
                                     <TextBlock Text="{Binding ChampionLevel[1]}" Margin="5 0 10 0" />
-                                    <TextBlock Text="Mastery Points: " />
-                                    <TextBlock Text="{Binding ChampionPoints[1]}" Margin="5 0 5 0" />
                                 </StackPanel>
+                                <TextBlock Text="Mastery Points:" />
+                                <TextBlock Text="{Binding ChampionPoints[1]}" Margin="5 0 5 0" />
                             </StackPanel>
 
                             <StackPanel Orientation="Vertical">
@@ -107,9 +114,9 @@
                                 <StackPanel Orientation="Horizontal">
                                     <TextBlock Text="Level: " />
                                     <TextBlock Text="{Binding ChampionLevel[2]}" Margin="5 0 10 0" />
-                                    <TextBlock Text="Mastery Points: " />
-                                    <TextBlock Text="{Binding ChampionPoints[2]}" Margin="5 0 5 0" />
                                 </StackPanel>
+                                <TextBlock Text="Mastery Points:" />
+                                <TextBlock Text="{Binding ChampionPoints[2]}" Margin="5 0 5 0" />
                             </StackPanel>
 
                             <StackPanel Orientation="Vertical">
@@ -121,9 +128,9 @@
                                 <StackPanel Orientation="Horizontal">
                                     <TextBlock Text="Level: " />
                                     <TextBlock Text="{Binding ChampionLevel[3]}" Margin="5 0 10 0" />
-                                    <TextBlock Text="Mastery Points: " />
-                                    <TextBlock Text="{Binding ChampionPoints[3]}" Margin="5 0 5 0" />
                                 </StackPanel>
+                                <TextBlock Text="Mastery Points:" />
+                                <TextBlock Text="{Binding ChampionPoints[3]}" Margin="5 0 5 0" />
                             </StackPanel>
 
                             <StackPanel Orientation="Vertical">
@@ -135,9 +142,9 @@
                                 <StackPanel Orientation="Horizontal">
                                     <TextBlock Text="Level: " />
                                     <TextBlock Text="{Binding ChampionLevel[4]}" Margin="5 0 10 0" />
-                                    <TextBlock Text="Mastery Points: " />
-                                    <TextBlock Text="{Binding ChampionPoints[4]}" Margin="5 0 5 0" />
                                 </StackPanel>
+                                <TextBlock Text="Mastery Points:" />
+                                <TextBlock Text="{Binding ChampionPoints[4]}" Margin="5 0 5 0" />
                             </StackPanel>
 
                             <StackPanel Orientation="Vertical">
@@ -149,9 +156,9 @@
                                 <StackPanel Orientation="Horizontal">
                                     <TextBlock Text="Level: " />
                                     <TextBlock Text="{Binding ChampionLevel[5]}" Margin="5 0 10 0" />
-                                    <TextBlock Text="Mastery Points: " />
-                                    <TextBlock Text="{Binding ChampionPoints[5]}" Margin="5 0 5 0" />
                                 </StackPanel>
+                                <TextBlock Text="Mastery Points:" />
+                                <TextBlock Text="{Binding ChampionPoints[5]}" Margin="5 0 5 0" />
                             </StackPanel>
 
                             <StackPanel Orientation="Vertical">
@@ -163,9 +170,9 @@
                                 <StackPanel Orientation="Horizontal">
                                     <TextBlock Text="Level: " />
                                     <TextBlock Text="{Binding ChampionLevel[6]}" Margin="5 0 10 0" />
-                                    <TextBlock Text="Mastery Points: " />
-                                    <TextBlock Text="{Binding ChampionPoints[6]}" Margin="5 0 5 0" />
                                 </StackPanel>
+                                <TextBlock Text="Mastery Points:" />
+                                <TextBlock Text="{Binding ChampionPoints[6]}" Margin="5 0 5 0" />
                             </StackPanel>
 
                             <StackPanel Orientation="Vertical">
@@ -177,9 +184,9 @@
                                 <StackPanel Orientation="Horizontal">
                                     <TextBlock Text="Level: " />
                                     <TextBlock Text="{Binding ChampionLevel[7]}" Margin="5 0 10 0" />
-                                    <TextBlock Text="Mastery Points: " />
-                                    <TextBlock Text="{Binding ChampionPoints[7]}" Margin="5 0 5 0" />
                                 </StackPanel>
+                                <TextBlock Text="Mastery Points:" />
+                                <TextBlock Text="{Binding ChampionPoints[7]}" Margin="5 0 5 0" />
                             </StackPanel>
 
                             <StackPanel Orientation="Vertical">
@@ -191,9 +198,9 @@
                                 <StackPanel Orientation="Horizontal">
                                     <TextBlock Text="Level: " />
                                     <TextBlock Text="{Binding ChampionLevel[8]}" Margin="5 0 10 0" />
-                                    <TextBlock Text="Mastery Points: " />
-                                    <TextBlock Text="{Binding ChampionPoints[8]}" Margin="5 0 5 0" />
                                 </StackPanel>
+                                <TextBlock Text="Mastery Points:" />
+                                <TextBlock Text="{Binding ChampionPoints[8]}" Margin="5 0 5 0" />
                             </StackPanel>
 
                             <StackPanel Orientation="Vertical">
@@ -205,9 +212,9 @@
                                 <StackPanel Orientation="Horizontal">
                                     <TextBlock Text="Level: " />
                                     <TextBlock Text="{Binding ChampionLevel[9]}" Margin="5 0 10 0" />
-                                    <TextBlock Text="Mastery Points: " />
-                                    <TextBlock Text="{Binding ChampionPoints[9]}" Margin="5 0 5 0" />
                                 </StackPanel>
+                                <TextBlock Text="Mastery Points:" />
+                                <TextBlock Text="{Binding ChampionPoints[9]}" Margin="5 0 5 0" />
                             </StackPanel>
                         </StackPanel>
                     </StackPanel>
@@ -216,71 +223,75 @@
                     <StackPanel>
                         <StackPanel Orientation="Horizontal">
                             <TextBlock Text="Summoner Name: " />
-                            <TextBox Text="{Binding SummonerName}" Width="150" Margin="10 0 10 0" />
+                            <TextBox Text="{Binding SummonerName}" Width="150" Margin="10 0 10 0" cal:Message.Attach="[Event KeyDown] = [Action MatchHistoryKeyDown($eventArgs)]" />
                             <TextBlock Text="Region: " />
-                            <TextBox Text="{Binding LolRegion}" Width="50" Margin="10 0 10 0" />
+                            <ComboBox Name="LolRegions3" Width="75" Margin="10 0 10 0" SelectedIndex="0" cal:Message.Attach="[Event SelectionChanged] = [Action RegionChanged($this)]" />
                             <Button Content="Show" Name="ShowRecentMatches" />
                         </StackPanel>
-                        <StackPanel>
-                            <ListBox x:Name="MatchHistoryDictionary"
+                        <StackPanel Orientation="Horizontal">
+                            <StackPanel Visibility="{Binding ShowMatches, Converter={StaticResource BooleanToVisibilityConverter}}">
+                                <ListBox x:Name="MatchHistoryDictionary"
                                      Width="200"
                                      HorizontalAlignment="Left"
                                      SelectedValuePath="Key"
                                      DisplayMemberPath="Value"
                                      cal:Message.Attach="[Event SelectionChanged] = [Action ShowMatchDetails($this)]"/>
-                        </StackPanel>
-                        <StackPanel Orientation="Vertical">
-                            <StackPanel Orientation="Horizontal">
-                                <Image Source="{Binding SummonerIconListBlueSide[0]}" />
-                                <TextBlock Text="{Binding SummonerListBlueSide[0]}" />
-                                <TextBlock Text="{Binding ChampionsBlueSide[0]}" />
                             </StackPanel>
                             <StackPanel Orientation="Horizontal">
-                                <Image Source="{Binding SummonerIconListBlueSide[1]}" />
-                                <TextBlock Text="{Binding SummonerListBlueSide[1]}" />
-                                <TextBlock Text="{Binding ChampionsBlueSide[1]}" />
-                            </StackPanel>
-                            <StackPanel Orientation="Horizontal">
-                                <Image Source="{Binding SummonerIconListBlueSide[2]}" />
-                                <TextBlock Text="{Binding SummonerListBlueSide[2]}" />
-                                <TextBlock Text="{Binding ChampionsBlueSide[2]}" />
-                            </StackPanel>
-                            <StackPanel Orientation="Horizontal">
-                                <Image Source="{Binding SummonerIconListBlueSide[3]}" />
-                                <TextBlock Text="{Binding SummonerListBlueSide[3]}" />
-                                <TextBlock Text="{Binding ChampionsBlueSide[3]}" />
-                            </StackPanel>
-                            <StackPanel Orientation="Horizontal">
-                                <Image Source="{Binding SummonerIconListBlueSide[4]}" />
-                                <TextBlock Text="{Binding SummonerListBlueSide[4]}" />
-                                <TextBlock Text="{Binding ChampionsBlueSide[4]}" />
-                            </StackPanel>
-                        </StackPanel>
-                        <StackPanel Orientation="Vertical">
-                            <StackPanel Orientation="Horizontal">
-                                <Image Source="{Binding SummonerIconListRedSide[0]}" />
-                                <TextBlock Text="{Binding SummonerListRedSide[0]}" />
-                                <TextBlock Text="{Binding ChampionsRedSide[0]}" />
-                            </StackPanel>
-                            <StackPanel Orientation="Horizontal">
-                                <Image Source="{Binding SummonerIconListRedSide[1]}" />
-                                <TextBlock Text="{Binding SummonerListRedSide[1]}" />
-                                <TextBlock Text="{Binding ChampionsRedSide[1]}" />
-                            </StackPanel>
-                            <StackPanel Orientation="Horizontal">
-                                <Image Source="{Binding SummonerIconListRedSide[2]}" />
-                                <TextBlock Text="{Binding SummonerListRedSide[2]}" />
-                                <TextBlock Text="{Binding ChampionsRedSide[2]}" />
-                            </StackPanel>
-                            <StackPanel Orientation="Horizontal">
-                                <Image Source="{Binding SummonerIconListRedSide[3]}" />
-                                <TextBlock Text="{Binding SummonerListRedSide[3]}" />
-                                <TextBlock Text="{Binding ChampionsRedSide[3]}" />
-                            </StackPanel>
-                            <StackPanel Orientation="Horizontal">
-                                <Image Source="{Binding SummonerIconListRedSide[4]}" />
-                                <TextBlock Text="{Binding SummonerListRedSide[4]}" />
-                                <TextBlock Text="{Binding ChampionsRedSide[4]}" />
+                                <StackPanel Orientation="Vertical">
+                                    <StackPanel Orientation="Horizontal">
+                                        <Image Source="{Binding SummonerIconListBlueSide[0]}" Height="50" />
+                                        <TextBlock Text="{Binding SummonerListBlueSide[0]}" />
+                                        <TextBlock Text="{Binding ChampionsBlueSide[0]}" />
+                                    </StackPanel>
+                                    <StackPanel Orientation="Horizontal">
+                                        <Image Source="{Binding SummonerIconListBlueSide[1]}" Height="50" />
+                                        <TextBlock Text="{Binding SummonerListBlueSide[1]}" />
+                                        <TextBlock Text="{Binding ChampionsBlueSide[1]}" />
+                                    </StackPanel>
+                                    <StackPanel Orientation="Horizontal">
+                                        <Image Source="{Binding SummonerIconListBlueSide[2]}" Height="50" />
+                                        <TextBlock Text="{Binding SummonerListBlueSide[2]}" />
+                                        <TextBlock Text="{Binding ChampionsBlueSide[2]}" />
+                                    </StackPanel>
+                                    <StackPanel Orientation="Horizontal">
+                                        <Image Source="{Binding SummonerIconListBlueSide[3]}" Height="50" />
+                                        <TextBlock Text="{Binding SummonerListBlueSide[3]}" />
+                                        <TextBlock Text="{Binding ChampionsBlueSide[3]}" />
+                                    </StackPanel>
+                                    <StackPanel Orientation="Horizontal">
+                                        <Image Source="{Binding SummonerIconListBlueSide[4]}" Height="50" />
+                                        <TextBlock Text="{Binding SummonerListBlueSide[4]}" />
+                                        <TextBlock Text="{Binding ChampionsBlueSide[4]}" />
+                                    </StackPanel>
+                                </StackPanel>
+                                <StackPanel Orientation="Vertical">
+                                    <StackPanel Orientation="Horizontal">
+                                        <Image Source="{Binding SummonerIconListRedSide[0]}" Height="50" />
+                                        <TextBlock Text="{Binding SummonerListRedSide[0]}" />
+                                        <TextBlock Text="{Binding ChampionsRedSide[0]}" />
+                                    </StackPanel>
+                                    <StackPanel Orientation="Horizontal">
+                                        <Image Source="{Binding SummonerIconListRedSide[1]}" Height="50" />
+                                        <TextBlock Text="{Binding SummonerListRedSide[1]}" />
+                                        <TextBlock Text="{Binding ChampionsRedSide[1]}" />
+                                    </StackPanel>
+                                    <StackPanel Orientation="Horizontal">
+                                        <Image Source="{Binding SummonerIconListRedSide[2]}" Height="50" />
+                                        <TextBlock Text="{Binding SummonerListRedSide[2]}" />
+                                        <TextBlock Text="{Binding ChampionsRedSide[2]}" />
+                                    </StackPanel>
+                                    <StackPanel Orientation="Horizontal">
+                                        <Image Source="{Binding SummonerIconListRedSide[3]}" Height="50" />
+                                        <TextBlock Text="{Binding SummonerListRedSide[3]}" />
+                                        <TextBlock Text="{Binding ChampionsRedSide[3]}" />
+                                    </StackPanel>
+                                    <StackPanel Orientation="Horizontal">
+                                        <Image Source="{Binding SummonerIconListRedSide[4]}" Height="50" />
+                                        <TextBlock Text="{Binding SummonerListRedSide[4]}" />
+                                        <TextBlock Text="{Binding ChampionsRedSide[4]}" />
+                                    </StackPanel>
+                                </StackPanel>
                             </StackPanel>
                         </StackPanel>
                     </StackPanel>

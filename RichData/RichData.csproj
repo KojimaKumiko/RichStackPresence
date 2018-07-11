@@ -76,6 +76,7 @@
     <Compile Include="GuildWars2\Items.cs" />
     <Compile Include="GuildWars2\PVP.cs" />
     <Compile Include="GuildWars2\Worlds.cs" />
+    <Compile Include="GuildWars2\WvW.cs" />
     <Compile Include="LeagueKey.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

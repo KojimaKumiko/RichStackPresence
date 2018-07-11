@@ -12,6 +12,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Controls;
+using System.Windows.Input;
 
 namespace RichClient.ViewModels
 {
@@ -20,6 +21,9 @@ namespace RichClient.ViewModels
         public LeagueViewModel()
         {
             DisplayName = "League of Legends";
+            LolRegions = new BindableCollection<string>();
+            LolRegions2 = new BindableCollection<string>();
+            LolRegions3 = new BindableCollection<string>();
             ChampionName = new BindableCollection<string>();
             ChampionIcon = new BindableCollection<string>();
             ChampionPoints = new BindableCollection<int>();
@@ -31,9 +35,18 @@ namespace RichClient.ViewModels
             SummonerListRedSide = new BindableCollection<string>();
             SummonerIconListRedSide = new BindableCollection<string>();
             ChampionsRedSide = new BindableCollection<string>();
+            BannedChampionsBlueSide = new BindableCollection<string[]>();
+            BannedChampionsIconBlueSide = new BindableCollection<string[]>();
+            BannedChampionsIconRedSide = new BindableCollection<string[]>();
+            BannedChampionsRedSide = new BindableCollection<string[]>();
+
+            LolRegion = "EUW";
 
             ShowError = false;
             ShowLeague = true;
+            ShowSummoner = false;
+            ShowMasteries = false;
+            ShowMatches = false;
             CheckKey();
         }
 
@@ -41,20 +54,53 @@ namespace RichClient.ViewModels
         {
             if (LeagueKey.GetKey() != null)
             {
-                _riotApi = RiotApi.NewInstance(LeagueKey.GetKey());
-                champs = _riotApi.LolStaticData.GetChampionListAsync(Region.EUW, dataById: true, tags: tags);
-                //spells = _riotApi.LolStaticData.GetSummonerSpellListAsync(Region.EUW, dataById: true);
-                
-                Console.WriteLine("\nAsync Started\n");
-                //SummonerSpells = (await spells).Data;
-                Versions = await _riotApi.LolStaticData.GetVersionsAsync(Region.EUW);
-                Champions = (await champs).Data;
-                Console.WriteLine("\nAsync Finished\n");
+                try
+                {
+                    _riotApi = RiotApi.NewInstance(LeagueKey.GetKey());
+                    FillRegions();
+                    champs = _riotApi.LolStaticData.GetChampionListAsync(Region.EUW, dataById: true, tags: tags);
+                    spells = _riotApi.LolStaticData.GetSummonerSpellListAsync(Region.EUW, dataById: true);
+
+                    Console.WriteLine("\nAsync Started\n");
+                    SummonerSpells = (await spells).Data;
+                    Versions = await _riotApi.LolStaticData.GetVersionsAsync(Region.EUW);
+                    Champions = (await champs).Data;
+                    Console.WriteLine("\nAsync Finished\n");
+                }
+                catch (Exception ex)
+                {
+                    ShowLeague = false;
+                    ShowError = true;
+                    Console.WriteLine("An exception occured: " + ex + "\nException Message: " + ex.Message);
+                }
             }
             else
             {
+                ShowLeague = false;
                 ShowError = true;
             }
+        }
+
+        private void FillRegions()
+        {
+            LolRegions.Add("EUW");
+            LolRegions.Add("EUNE");
+            LolRegions.Add("NA");
+            LolRegions.Add("TR");
+            LolRegions.Add("RU");
+            LolRegions.Add("OCE");
+            LolRegions.Add("KR");
+            LolRegions.Add("LAS");
+            LolRegions.Add("LAN");
+            LolRegions.Add("JP");
+
+            LolRegions2 = LolRegions;
+            LolRegions3 = LolRegions;
+        }
+
+        public void RegionChanged(string region)
+        {
+            LolRegion = region;
         }
 
         public async void ShowSummonerInformation()
@@ -80,8 +126,24 @@ namespace RichClient.ViewModels
                                 RankedName = league.LeagueName;
                                 RankedRank = league.Tier + " " + league.Rank;
                             }
+                            else if (league.QueueType == "RANKED_TEAM_5x5")
+                            {
+                                FlexRanked = "Ranked Flex";
+                                FlexRankedName = league.LeagueName;
+                                FlexRankedRank = league.Tier + " " + league.Rank;
+                            }
                         }
                     }
+                    else
+                    {
+                        RankedName = "";
+                        RankedQue = "";
+                        RankedRank = "";
+                        FlexRanked = "";
+                        FlexRankedName = "";
+                        FlexRankedRank = "";
+                    }
+                    ShowSummoner = true;
                 }
             }
         }
@@ -96,7 +158,7 @@ namespace RichClient.ViewModels
                     var masteries = await _riotApi.ChampionMastery.GetAllChampionMasteriesAsync(GetRegion(LolRegion), summoner.Id);
                     for(int index = 0; index < 10; index++)
                     {
-                        if(Champions != null)
+                        if(Champions != null && Versions != null)
                         {
                             ChampionName.Add(Champions[masteries[index].ChampionId.ToString()].Name);
                             var image = Champions[masteries[index].ChampionId.ToString()].Image.Full;
@@ -107,6 +169,7 @@ namespace RichClient.ViewModels
                         ChampionLevel.Add(masteries[index].ChampionLevel);
                     }
                 }
+                ShowMasteries = true;
             }
         }
 
@@ -123,6 +186,7 @@ namespace RichClient.ViewModels
                         MatchHistoryDictionary.Add(match, Champions[match.Champion.ToString()].Name);
                     }
                 }
+                ShowMatches = true;
             }
         }
 
@@ -137,7 +201,7 @@ namespace RichClient.ViewModels
                 {
                     if(summoner != null)
                     {
-                        SummonerListBlueSide.Add(summoner.Player.SummonerName);
+                        SummonerListBlueSide.Add(summoner.Player.SummonerName + " ");
                         SummonerIconListBlueSide.Add($"http://ddragon.leagueoflegends.com/cdn/{Versions[0]}/img/profileicon/{summoner.Player.ProfileIcon}.png");
                         ChampionsBlueSide.Add(Champions[participant.ChampionId.ToString()].Name);
                     }
@@ -146,7 +210,7 @@ namespace RichClient.ViewModels
                 {
                     if(summoner != null)
                     {
-                        SummonerListRedSide.Add(summoner.Player.SummonerName);
+                        SummonerListRedSide.Add(summoner.Player.SummonerName + " ");
                         SummonerIconListRedSide.Add($"http://ddragon.leagueoflegends.com/cdn/{Versions[0]}/img/profileicon/{summoner.Player.ProfileIcon}.png");
                         ChampionsRedSide.Add(Champions[participant.ChampionId.ToString()].Name);
                     }
@@ -180,6 +244,30 @@ namespace RichClient.ViewModels
                     BannedChampionsRedSide.Add(bans.ToArray());
                     BannedChampionsIconRedSide.Add(icons.ToArray());
                 }
+            }
+        }
+
+        public void SummonerInfoKeyDown(KeyEventArgs keyEvent)
+        {
+            if (keyEvent.Key == Key.Enter)
+            {
+                ShowSummonerInformation();
+            }
+        }
+
+        public void ChampionMasteriesKeyDown(KeyEventArgs keyEvent)
+        {
+            if (keyEvent.Key == Key.Enter)
+            {
+                SearchMastery();
+            }
+        }
+
+        public void MatchHistoryKeyDown(KeyEventArgs keyEvent)
+        {
+            if (keyEvent.Key == Key.Enter)
+            {
+                ShowRecentMatches();
             }
         }
 
@@ -327,8 +415,90 @@ namespace RichClient.ViewModels
                 NotifyOfPropertyChange(() => SummonerLevel);
             }
         }
+
+        private bool _showMasteries;
+        public bool ShowMasteries
+        {
+            get { return _showMasteries; }
+            set
+            {
+                if (value == _showMasteries)
+                    return;
+                _showMasteries = value;
+                NotifyOfPropertyChange(() => ShowMasteries);
+            }
+        }
+
+        private bool _showSummoner;
+        public bool ShowSummoner
+        {
+            get { return _showSummoner; }
+            set
+            {
+                if (value == _showSummoner)
+                    return;
+                _showSummoner = value;
+                NotifyOfPropertyChange(() => ShowSummoner);
+            }
+        }
+
+        private bool _showMatches;
+        public bool ShowMatches
+        {
+            get { return _showMatches; }
+            set
+            {
+                if (value == _showMatches)
+                    return;
+                _showMatches = value;
+                NotifyOfPropertyChange(() => ShowMatches);
+            }
+        }
+
+        private string _flexRankedName;
+        public string FlexRankedName
+        {
+            get { return _flexRankedName; }
+            set
+            {
+                if (value == _flexRankedName)
+                    return;
+                _flexRankedName = value;
+                NotifyOfPropertyChange(() => FlexRankedName);
+            }
+        }
+
+        private string _flexRanked;
+        public string FlexRanked
+        {
+            get { return _flexRanked; }
+            set
+            {
+                if (value == _flexRanked)
+                    return;
+                _flexRanked = value;
+                NotifyOfPropertyChange(() => FlexRanked);
+            }
+        }
+
+        private string _flexRankedRank;
+        public string FlexRankedRank
+        {
+            get { return _flexRankedRank; }
+            set
+            {
+                if (value == _flexRankedRank)
+                    return;
+                _flexRankedRank = value;
+                NotifyOfPropertyChange(() => FlexRankedRank);
+            }
+        }
+
         public string LolRegion { get; set; }
         public string[] Versions { get; set; }
+        public BindableCollection<string> LolRegions { get; set; }
+        public BindableCollection<string> LolRegions2 { get; set; }
+        public BindableCollection<string> LolRegions3{ get; set; }
         public BindableCollection<string> ChampionName { get; set; }
         public BindableCollection<string> ChampionIcon { get; set; }
         public BindableCollection<int> ChampionPoints { get; set; }

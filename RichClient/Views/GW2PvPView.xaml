@@ -4,24 +4,80 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:RichClient.Views"
+             xmlns:cal="http://www.caliburnproject.org"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
-    <StackPanel>
-        <StackPanel Orientation="Horizontal">
-            <TextBlock Text="PvP Rank: " />
-            <TextBlock FontWeight="Normal" Text="{Binding PvPStats.PvPRank}" />
-        </StackPanel>
-        <StackPanel Orientation="Horizontal">
-            <TextBlock Text="PvP Rank Points: " />
-            <TextBlock FontWeight="Normal" Text="{Binding PvPStats.PvPRankPoints}" />
-        </StackPanel>
-        <StackPanel Orientation="Horizontal">
-            <TextBlock Text="PvP Rank Rollovers: " />
-            <TextBlock FontWeight="Normal" Text="{Binding PvPStats.PvPRankRollovers}" />
-        </StackPanel>
-        <!--<StackPanel Orientation="Horizontal">
+    <UserControl.Resources>
+        <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
+    </UserControl.Resources>
+    <StackPanel Orientation="Horizontal">
+        <StackPanel Orientation="Vertical">
+            <StackPanel Orientation="Horizontal">
+                <TextBlock Text="PvP Rank: " />
+                <TextBlock FontWeight="Normal" Text="{Binding PvPStats.PvPRank}" />
+            </StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <TextBlock Text="PvP Rank Points: " />
+                <TextBlock FontWeight="Normal" Text="{Binding PvPStats.PvPRankPoints}" />
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" Margin="0 0 0 10">
+                <TextBlock Text="PvP Rank Rollovers: " />
+                <TextBlock FontWeight="Normal" Text="{Binding PvPStats.PvPRankRollovers}" />
+            </StackPanel>
+
+            <StackPanel Orientation="Horizontal">
+                <TextBlock Text="Wins: " />
+                <TextBlock FontWeight="Normal" Text="{Binding PvPStats.Aggregate.Wins}" />
+            </StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <TextBlock Text="Losses: " />
+                <TextBlock FontWeight="Normal" Text="{Binding PvPStats.Aggregate.Losses}" />
+            </StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <TextBlock Text="Desertions: " />
+                <TextBlock FontWeight="Normal" Text="{Binding PvPStats.Aggregate.Desertions}" />
+            </StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <TextBlock Text="Byes: " />
+                <TextBlock FontWeight="Normal" Text="{Binding PvPStats.Aggregate.Byes}" />
+            </StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <TextBlock Text="Forfeits: " />
+                <TextBlock FontWeight="Normal" Text="{Binding PvPStats.Aggregate.Forfeits}" />
+            </StackPanel>
+            <!--<StackPanel Orientation="Horizontal">
             <TextBlock Text="" />
-            <TextBlock Text="{Binding}" />
-        </StackPanel>-->
+            <TextBlock FontWeight="Normal" Text="{Binding}" />
+            </StackPanel>-->
+        </StackPanel>
+        <StackPanel Margin="15 0 15 0">
+            <ListBox x:Name="ProfessionDictionary"
+                     Width="125"
+                     SelectedValuePath="Key"
+                     DisplayMemberPath="Value"
+                     cal:Message.Attach="[Event SelectionChanged] = [Action ProfessionChanged($this)]"/>
+        </StackPanel>
+        <StackPanel Orientation="Vertical" Visibility="{Binding ProfessionSelected, Converter={StaticResource BooleanToVisibilityConverter}}">
+            <StackPanel Orientation="Horizontal">
+                <TextBlock Text="Wins: " />
+                <TextBlock FontWeight="Normal" Text="{Binding SelectedProfession.Wins}" />
+            </StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <TextBlock Text="Losses: " />
+                <TextBlock FontWeight="Normal" Text="{Binding SelectedProfession.Losses}" />
+            </StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <TextBlock Text="Desertions: " />
+                <TextBlock FontWeight="Normal" Text="{Binding SelectedProfession.Desertions}" />
+            </StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <TextBlock Text="Byes: " />
+                <TextBlock FontWeight="Normal" Text="{Binding SelectedProfession.Byes}" />
+            </StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <TextBlock Text="Forfeits: " />
+                <TextBlock FontWeight="Normal" Text="{Binding SelectedProfession.Forfeits}" />
+            </StackPanel>
+        </StackPanel>
     </StackPanel>
 </UserControl>
