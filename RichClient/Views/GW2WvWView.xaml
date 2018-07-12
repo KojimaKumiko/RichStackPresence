@@ -6,7 +6,44 @@
              xmlns:local="clr-namespace:RichClient.Views"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
-    <Grid>
-        <TextBlock Text="Hier könnten ihre WvW-Stats stehen! (aber mal ehrlich, wer spielt schon WvW?)" />
-    </Grid>
+    <StackPanel>
+        <!--<ComboBox />-->
+        <StackPanel Orientation="Horizontal">
+            <TextBlock Text="World: " />
+            <TextBlock FontWeight="Normal" Text="{Binding World.Name}" Margin="0 0 10 0" />
+            <TextBlock Text="Start: " />
+            <TextBlock FontWeight="Normal" Text="{Binding Start, StringFormat=dd.MM.yyyy}" Margin="0 0 10 0" />
+            <TextBlock Text="End: " />
+            <TextBlock FontWeight="Normal" Text="{Binding End, StringFormat=dd.MM.yyyy}" />
+        </StackPanel>
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+            <TextBlock Grid.Column="0" Grid.Row="0" Text="Scores" />
+
+            <TextBlock Grid.Row="1" Grid.Column="0" Text="Red " />
+            <TextBlock Grid.Row="1" Grid.Column="1" Text="{Binding Red}" />
+            <TextBlock Grid.Row="1" Grid.Column="2" Text="{Binding Match.Scores.Red}" Margin="5 0 0 0" FontWeight="Normal" />
+            <TextBlock Grid.Row="1" Grid.Column="3" Text="Green " Margin="10 0 0 0" />
+            <TextBlock Grid.Row="1" Grid.Column="4" Text="{Binding Green}" />
+            <TextBlock Grid.Row="1" Grid.Column="5" Text="{Binding Match.Scores.Green}" Margin="5 0 0 0" FontWeight="Normal" />
+            <TextBlock Grid.Row="1" Grid.Column="6" Text="Blue " Margin="10 0 0 0" />
+            <TextBlock Grid.Row="1" Grid.Column="7" Text="{Binding Blue}" />
+            <TextBlock Grid.Row="1" Grid.Column="8" Text="{Binding Match.Scores.Blue}" Margin="5 0 0 0" FontWeight="Normal" />
+        </Grid>
+    </StackPanel>
 </UserControl>

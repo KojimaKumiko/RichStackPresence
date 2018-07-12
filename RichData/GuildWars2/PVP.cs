@@ -1,5 +1,6 @@
 ﻿using Newtonsoft.Json;
 using System.Net;
+using System.Collections.Generic;
 
 namespace RichData.GuildWars2
 {
@@ -76,7 +77,7 @@ namespace RichData.GuildWars2
         [JsonProperty(PropertyName = "pvp_rank_rollovers")]
         public int PvPRankRollovers { get; set; }
         public Aggregate Aggregate { get; set; }
-        public Professions Professions { get; set; }
+        public IDictionary<string, Aggregate> Professions { get; set; }
         public Ladders Ladders { get; set; }
         public static string Address = "https://api.guildwars2.com/v2/pvp/stats?access_token=";
     }
