@@ -13,14 +13,14 @@
         <br />
         @Html.Label("Select Region ")
         <text>&nbsp;</text>
-        <select name="regi" id="regi" >
+        <select name="regi" id="regi">
             <option value="TR">Turkey</option>
             <option value="RU">Russia</option>
             <option value="OCE">Oceania</option>
             <option value="LAS">LAS</option>
             <option value="LAN">LAN</option>
             <option value="KR">Korea</option>
-            <option value="NA" selected ="selected">NA</option>
+            <option value="NA" selected="selected">NA</option>
             <option value="EUW">EUW</option>
             <option value="EUNE">EUNE</option>
             <option value="JP">Japan</option>
@@ -34,12 +34,83 @@
 
         <button>Submit</button>
     }
-    <div >
+    <div>
         <p>
-            <img src="@ViewBag.SummonerIcon" style="width:100px;height:100px;"/>&nbsp;
+            <img src="@ViewBag.SummonerIcon" style="width:100px;height:100px;" />&nbsp;
             <font size="15">@ViewBag.SummonerName&nbsp;@ViewBag.lvl</font>
-            
+
         </p>
     </div>
-
+    <div>
+        <h1>Last Match</h1>
+        <div>Gamemode: @ViewBag.GameMode</div>
+        <div>Duration: @ViewBag.Duration</div>
+        <div>
+            Blue Team:
+            <br />
+            <br />
+            @ViewBag.Sum0
+            <br />
+            @ViewBag.Champ0
+        </div>
+        <br />
+        <div>
+            @ViewBag.Sum1
+            <br />
+            @ViewBag.Champ1
+        </div>
+        <br />
+        <div>
+            @ViewBag.Sum2
+            <br />
+            @ViewBag.Champ2
+        </div>
+        <br />
+        <div>
+            @ViewBag.Sum3
+            <br />
+            @ViewBag.Champ3
+        </div>
+        <br />
+        <div>
+            @ViewBag.Sum4
+            <br />
+            @ViewBag.Champ4
+        </div>
+        <br />
+        <div>
+            Red Team:
+            <br />
+            <br />
+            @ViewBag.Sum5
+            <br />
+            @ViewBag.Champ5
+        </div>
+        <br />
+        <div>
+            @ViewBag.Sum6
+            <br />
+            @ViewBag.Champ6
+        </div>
+        <br />
+        <div>
+            @ViewBag.Sum7
+            <br />
+            @ViewBag.Champ7
+        </div>
+        <br />
+        <div>
+            @ViewBag.Sum8
+            <br />
+            @ViewBag.Champ8
+        </div>
+        <br />
+        <div>
+            @ViewBag.Sum9
+            <br />
+            @ViewBag.Champ9
+        </div>
+        <br />
+        <div>@ViewBag.Winner</div>
+    </div>
 </fieldset>
